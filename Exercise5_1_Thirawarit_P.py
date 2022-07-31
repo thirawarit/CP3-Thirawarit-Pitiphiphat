@@ -1,6 +1,3 @@
-import re
-
-
 if __name__ == '__main__' :
     value1 = int(input("Input Number 1 : "))
     value2 = int(input("Input Number 2 : "))
