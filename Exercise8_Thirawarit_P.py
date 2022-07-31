@@ -1,6 +1,3 @@
-from secrets import choice
-
-
 if __name__ == '__main__' :
     print("====Login...====")
     username = input("Username : ")
@@ -25,6 +22,6 @@ if __name__ == '__main__' :
             print("error!!")
             
             
-        print("Total cost is ",total)
+        print("Total cost is ",total, "$")
     else :
         print("Usename and Password is not correct. Please try again.")
