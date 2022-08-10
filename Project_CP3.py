@@ -6,61 +6,53 @@ Project : ลิฟต์คอนโด 2 ห้อง
 '''
 class Lift_Work:
     call_lift = int()
-    lift = int()
+    position_lift = int()
     lift_terminal = int()
     order_floor = ['st', 'nd', 'ed', 'th', 'th', 'th', 'th', 'th']
-    def lift_move(self)
-        if self.lift_terminal < self.lift:
-            self.lift = self.lift_terminal
-            print("lift's going down...", self.lift_terminal, order_floor[self.lift_terminal-1])
-        elif self.lift_terminal > self.lift:
-            self.lift = self.lift_terminal
-            print("lift's going up...", self.lift_terminal, order_floor[self.lift_terminal-1])
+    def get_passenger(self):
+        print("Lift's coming...")
+        print(self.call_lift, self.order_floor[self.call_lift-1],", Lift's opening...")
+    def lift_move(self):
+        if self.lift_terminal < self.position_lift:
+            self.position_lift = self.lift_terminal
+            print("lift's going down...", self.lift_terminal, self.order_floor[self.lift_terminal-1])
+        elif self.lift_terminal > self.position_lift:
+            self.position_lift = self.lift_terminal
+            print("lift's going up...", self.lift_terminal, self.order_floor[self.lift_terminal-1])
         else:
-            print("lift's opening...", self.lift_terminal, order_floor[self.lift_terminal-1])
+            print("lift's opening...", self.lift_terminal, self.order_floor[self.lift_terminal-1])
+    def check_status(self, num_lift):
+        if num_lift == 1:
+            print("========","\nlift1 is",self.position_lift)
+        else:
+            print("lift2 is",self.position_lift,"\n"+"========")
 
 
-
-lift1 = 1
-lift2 = 1
-order_floor = ['st', 'nd', 'ed', 'th', 'th', 'th', 'th', 'th']
+lift1 = Lift_Work()
+lift2 = Lift_Work()
+lift1.position_lift = 1
+lift2.position_lift = 1
 lift1_go = int(input("lift1's opening... , Select Floor that you want : "))
-lift1 = lift1_go
-print("lift's going up...", lift1_go, order_floor[lift1_go-1])
-print("========","\nlift1 is",lift1)
-print("lift2 is",lift2)
+lift1.position_lift = lift1_go
+lift1.check_status(1)
+lift2.check_status(2)
+'''
+print("lift's going up...", lift1.position_lift, Lift_Work.order_floor[lift1_go-1])
+print("========","\nlift1 is", lift1.position_lift)
+print("lift2 is",lift2.position_lift)
+'''
 while True:
     personcalls = int(input('call lift from floor : '))
-    if abs(lift1-personcalls) <= abs(lift2-personcalls):
-        lift1 = personcalls
-        print(personcalls, order_floor[personcalls-1], 'lift1 open!!')
-        lift1_go = int(input('Select Floor that you want : '))
-        if lift1_go < lift1:
-            lift1 = lift1_go
-            print("lift's going down...", lift1_go, order_floor[lift1_go-1])
-        elif lift1_go > lift1:
-            lift1 = lift1_go
-            print("lift's going up...", lift1_go, order_floor[lift1_go-1])
-        else:
-            print("lift's opening...", lift1_go, order_floor[lift1_go-1])
-    elif abs(lift1-personcalls) > abs(lift2-personcalls):
-        lift2 = personcalls
-        print(personcalls, order_floor[personcalls-1], 'lift2 open!!')
-        lift2_go = int(input('Select Floor that you want : '))
-        if lift2_go < lift2:
-            lift2 = lift2_go
-            print("lift's going down...", lift2_go, order_floor[lift2_go-1])
-        elif lift2_go > lift2:
-            lift2 = lift1_go
-            print("lift's going up...", lift2_go, order_floor[lift2_go-1])
-        else:
-            print("lift's opening...", lift2_go, order_floor[lift2_go-1])
-    '''
-    else:
-        print("lift1's coming...")
-        lift1_go = int(input("lift's opening... , Select Floor that you want : "))
-        lift1 = lift1_go
-        print("lift's going up...", lift1_go, order_floor[lift1_go-1])
-        '''
-    print("========","\nlift1 is",lift1)
-    print("lift2 is",lift2)
+    if abs(lift1.position_lift-personcalls) <= abs(lift2.position_lift-personcalls):
+        lift1.call_lift = personcalls
+        lift1.get_passenger()
+        lift1.lift_terminal = int(input('Select Floor that you want : '))
+        lift1.lift_move()
+
+    elif abs(lift1.position_lift-personcalls) > abs(lift2.position_lift-personcalls):
+        lift2.call_lift = personcalls
+        lift2.get_passenger()
+        lift2.lift_terminal = int(input('Select Floor that you want : '))
+        lift2.lift_move()    
+    lift1.check_status(1)
+    lift2.check_status(2)
