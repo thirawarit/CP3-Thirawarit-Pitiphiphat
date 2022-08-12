@@ -59,7 +59,6 @@ lift2.position_lift = 1
 lift1_go = input("lift1's opening... , Select Floor that you want : ")
 if lift1_go.isalpha():
     print("************\nERROR Please input 'stop'\n************")
-    
 else:
     lift1.position_lift = int(lift1_go)
     lift1.check_status(1)
