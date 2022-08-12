@@ -6,12 +6,13 @@ Project : ลิฟต์คอนโด 2 ตัว
 
 -รับค่า ชั้นที่เรียก และ ชั้นที่จะไป
 input = integer: 0 > N > 20 or string: STOP,stop
+input = 
+1.integer: ตั้งค่าจำนวนชั้นของคอนโด
+2.integer: ลิฟต์รับผู้โดยสารชั้นแรกไปที่ชั้นที่ระบุ
+3.integer: เรียกลิฟต์ที่ใกล้ชั้นนั้นที่สุด หากอยู่ชั้นเดียวกันให้ลิฟต์1ไปรับเสมอ
+4.integer: รับเลขชั้นที่ต้องการจะไป
+**** หากต้องการหยุดloop ให้ใส่อักษร alphabet ลงใน input
 '''
-
-from cgitb import reset
-from unittest import skip
-
-
 class Setup_Lift:
     #1st 2nd 3rd 4th 5th 6th 7th 8th 9th 10th 11st
     ordinal_floor = []
