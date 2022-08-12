@@ -5,9 +5,11 @@ Project : ลิฟต์คอนโด 2 ตัว
 -หากเรียกลิฟต์ที่อยู่ต่างชั้นกัน จะเรียกลิฟต์ที่อยู่ใกล้กับชั้นนั้นที่สุด
 
 -รับค่า ชั้นที่เรียก และ ชั้นที่จะไป
--
+input = integer: 0 > N > 20 or string: STOP,stop
 '''
-import string
+
+from cgitb import reset
+from unittest import skip
 
 
 class Setup_Lift:
@@ -54,18 +56,17 @@ lift1 = Lift_Work()
 lift2 = Lift_Work()
 lift1.position_lift = 1
 lift2.position_lift = 1
-lift1_go = int(input("lift1's opening... , Select Floor that you want : "))
-lift1.position_lift = lift1_go
-lift1.check_status(1)
-lift2.check_status(2)
-'''
-print("lift's going up...", lift1.position_lift, Lift_Work.order_floor[lift1_go-1])
-print("========","\nlift1 is", lift1.position_lift)
-print("lift2 is",lift2.position_lift)
-'''
-while True:
+lift1_go = input("lift1's opening... , Select Floor that you want : ")
+if lift1_go.isalpha():
+    print("************\nERROR Please input 'stop'\n************")
+    
+else:
+    lift1.position_lift = int(lift1_go)
+    lift1.check_status(1)
+    lift2.check_status(2)
+while lift1_go.upper != 'STOP':
     personcalls = input('call lift from floor : ')
-    if personcalls.upper() == 'STOP':
+    if personcalls.isalpha():
         print("************\nEmergency Stop!\n************")
         break
     elif abs(lift1.position_lift-int(personcalls)) <= abs(lift2.position_lift-int(personcalls)):
@@ -78,8 +79,6 @@ while True:
         lift2.get_passenger()
         lift2.lift_terminal = int(input('Select Floor that you want : '))
         lift2.lift_move()
-
-
     lift1.check_status(1)
     lift2.check_status(2)
 
