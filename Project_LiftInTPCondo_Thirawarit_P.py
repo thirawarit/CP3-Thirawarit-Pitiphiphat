@@ -59,27 +59,27 @@ lift2 = Lift_Work()
 lift1.position_lift = 1
 lift2.position_lift = 1
 lift1_go = input("lift1's opening... , Select Floor that you want : ")
-if lift1_go.isalpha():
-    print("************\nERROR Please input 'stop'\n************")
+if lift1_go.isalpha() or int(lift1_go) > setup_numfloor.num_floor:
+    print("************\nERROR System input wrong data!!!\n************")
 else:
     lift1.position_lift = int(lift1_go)
     lift1.check_status(1)
     lift2.check_status(2)
-while lift1_go.upper != 'STOP':
-    personcalls = input('call lift from floor : ')
-    if personcalls.isalpha():
-        print("************\nEmergency Stop!\n************")
-        break
-    elif abs(lift1.position_lift-int(personcalls)) <= abs(lift2.position_lift-int(personcalls)):
-        lift1.call_lift = int(personcalls)
-        lift1.get_passenger()
-        lift1.lift_terminal = int(input('Select Floor that you want : '))
-        lift1.lift_move()
-    elif abs(lift1.position_lift-int(personcalls)) > abs(lift2.position_lift-int(personcalls)):
-        lift2.call_lift = int(personcalls)
-        lift2.get_passenger()
-        lift2.lift_terminal = int(input('Select Floor that you want : '))
-        lift2.lift_move()
-    lift1.check_status(1)
-    lift2.check_status(2)
+    while lift1_go.upper != 'STOP':
+        personcalls = input('call lift from floor : ')
+        if personcalls.isalpha() or int(personcalls) > setup_numfloor.num_floor:
+            print("************\nEmergency Stop!\n************")
+            break
+        elif abs(lift1.position_lift-int(personcalls)) <= abs(lift2.position_lift-int(personcalls)):
+            lift1.call_lift = int(personcalls)
+            lift1.get_passenger()
+            lift1.lift_terminal = int(input('Select Floor that you want : '))
+            lift1.lift_move()
+        elif abs(lift1.position_lift-int(personcalls)) > abs(lift2.position_lift-int(personcalls)):
+            lift2.call_lift = int(personcalls)
+            lift2.get_passenger()
+            lift2.lift_terminal = int(input('Select Floor that you want : '))
+            lift2.lift_move()
+        lift1.check_status(1)
+        lift2.check_status(2)
 
